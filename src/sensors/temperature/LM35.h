@@ -6,7 +6,7 @@
 namespace wlp {
 
     class LM35 : public Sensor {
-    }
+    };
 
 }
 

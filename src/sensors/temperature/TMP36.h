@@ -6,7 +6,7 @@
 namespace wlp {
 
     class TMP36 : public Sensor {
-    }
+    };
 
 }
 

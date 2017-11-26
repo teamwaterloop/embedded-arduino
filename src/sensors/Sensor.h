@@ -4,7 +4,7 @@
 namespace wlp {
 
 	class Sensor {
-	}
+	};
 
 }
 
