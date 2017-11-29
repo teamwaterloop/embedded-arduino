@@ -6,3 +6,6 @@ out/
 .idea_modules/
 *.iws
 
+.pioenvs
+.piolibdeps
+CMakeListsPrivate.txt
