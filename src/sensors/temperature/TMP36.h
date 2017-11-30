@@ -6,6 +6,14 @@
 namespace wlp {
 
     class TMP36 : public Sensor {
+        pin_number m_pin;
+
+    public:
+        explicit TMP36(pin_number pin);
+
+        int16_t readRaw();
+
+        float readValue() override;
     };
 
 }

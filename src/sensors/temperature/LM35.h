@@ -6,6 +6,14 @@
 namespace wlp {
 
     class LM35 : public Sensor {
+        pin_number m_pin;
+
+    public:
+        explicit LM35(pin_number pin);
+
+        int16_t readRaw();
+
+        float readValue() override;
     };
 
 }
