@@ -2,7 +2,7 @@
 
 using namespace wlp;
 
-TMP006::TMP006(address i2c_addr, uint8_t sample_rate, Mode read_mode)
+TMP006::TMP006(address i2c_addr, uint16_t sample_rate, Mode read_mode)
         : m_register(i2c_addr),
           m_sample_rate(sample_rate),
           m_mode(read_mode) {}

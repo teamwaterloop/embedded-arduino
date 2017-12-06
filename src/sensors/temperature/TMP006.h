@@ -15,38 +15,39 @@
 #define TMP006_A1 (1.75e-3)
 #define TMP006_S0 (6.4) // * 10^-14
 
-#define TMP006_I2C_ADDR 0x40
-#define TMP006_CONFIG     0x02
-#define TMP006_MAN_ID 0xFE
-#define TMP006_DEV_ID 0xFF
-#define TMP006_VOBJ  0x0
-#define TMP006_TAMB 0x01
+#define TMP006_I2C_ADDR 0x40u
+#define TMP006_CONFIG   0x02u
+#define TMP006_MAN_ID   0xFEu
+#define TMP006_DEV_ID   0xFFu
+#define TMP006_VOBJ     0x00u
+#define TMP006_TAMB     0x01u
 
-#define TMP006_CFG_RESET    0x8000
-#define TMP006_CFG_MODEON   0x7000
-#define TMP006_CFG_1SAMPLE  0x0000
-#define TMP006_CFG_2SAMPLE  0x0200
-#define TMP006_CFG_4SAMPLE  0x0400
-#define TMP006_CFG_8SAMPLE  0x0600
-#define TMP006_CFG_16SAMPLE 0x0800
-#define TMP006_CFG_DRDYEN   0x0100
-#define TMP006_CFG_DRDY     0x0080
+#define TMP006_CFG_RESET    0x8000u
+#define TMP006_CFG_MODEON   0x7000u
+#define TMP006_CFG_1SAMPLE  0x0000u
+#define TMP006_CFG_2SAMPLE  0x0200u
+#define TMP006_CFG_4SAMPLE  0x0400u
+#define TMP006_CFG_8SAMPLE  0x0600u
+#define TMP006_CFG_16SAMPLE 0x0800u
+#define TMP006_CFG_DRDYEN   0x0100u
+#define TMP006_CFG_DRDY     0x0080u
 
-#define TMP006_EX_MAN_ID 0x5449
-#define TMP006_EX_DEV_ID 0x67
+#define TMP006_EX_MAN_ID 0x5449u
+#define TMP006_EX_DEV_ID 0x67u
 
 namespace wlp {
-	
+
     class TMP006 : public Sensor {
     public:
         typedef uint8_t Mode;
 
     private:
         I2CRegister m_register;
-        uint8_t m_sample_rate;
+        uint16_t m_sample_rate;
         Mode m_mode;
 
         int16_t readRawDieTemperature();
+
         int16_t readRawVoltage();
 
     public:
@@ -55,7 +56,7 @@ namespace wlp {
         };
 
         explicit TMP006(address i2c_addr = TMP006_I2C_ADDR,
-                        uint8_t sample_rate = TMP006_CFG_16SAMPLE,
+                        uint16_t sample_rate = TMP006_CFG_16SAMPLE,
                         Mode read_mode = DIE);
 
         bool begin();
