@@ -1,0 +1,11 @@
+.idea/
+bin/
+build/
+cmake-build-debug/
+out/
+.idea_modules/
+*.iws
+
+.pioenvs
+.piolibdeps
+CMakeListsPrivate.txt
