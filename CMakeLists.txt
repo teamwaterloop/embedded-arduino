@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.2)
-project(embedded-arduino)
+project(goose3-sensors)
 
 include(CMakeListsPrivate.txt)
 
