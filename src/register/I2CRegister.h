@@ -6,7 +6,6 @@
 
 namespace wlp {
 
-    typedef uint16_t size_type;
     typedef uint8_t address;
 
     class I2CRegister {
@@ -36,7 +35,7 @@ namespace wlp {
 
     template<typename Int>
     Int I2CRegister::readBytes(address reg_addr) {
-        constexpr auto bytes = static_cast<size_type>(sizeof(Int));
+        constexpr auto bytes = static_cast<uint8_t>(sizeof(Int));
         auto ret = static_cast<Int>(0);
         // Send register address from which to read
         Wire.beginTransmission(m_i2c_addr);
@@ -44,7 +43,8 @@ namespace wlp {
         Wire.endTransmission();
         // Read data from register
         Wire.beginTransmission(m_i2c_addr);
-        for (size_type i = 0; i < bytes; ++i) {
+        Wire.requestFrom(m_i2c_addr, bytes);
+        for (uint8_t i = 0; i < bytes; ++i) {
             // Have to cast to ensure larger Int types are properly read
             ret = static_cast<Int>(static_cast<Int>(ret << 8) | static_cast<Int>(Wire.read()));
         }
@@ -54,12 +54,12 @@ namespace wlp {
 
     template<typename Int>
     void I2CRegister::writeBytes(address reg_addr, Int data) {
-        constexpr auto bytes = static_cast<size_type>(sizeof(Int));
+        constexpr auto bytes = static_cast<uint8_t>(sizeof(Int));
         // Send register address to which to write
         Wire.beginTransmission(m_i2c_addr);
         Wire.write(reg_addr);
         // Write byte data
-        for (size_type i = 1; i <= bytes; ++i) {
+        for (uint8_t i = 1; i <= bytes; ++i) {
             Wire.write(static_cast<uint8_t>(data >> (8 * (bytes - i))));
         }
         Wire.endTransmission();
